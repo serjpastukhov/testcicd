@@ -1,5 +1,5 @@
 name: Publish on Docker Hub and Deploy
-#
+
 on:
   push:
     branches:
@@ -12,7 +12,7 @@ jobs:
       NAME: ${{ secrets.DOCKER_NAME }}
     steps:
       -
-        name: Login to docker.io
+        name: Login to https://hub.docker.com/
         run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
       -
         uses: actions/checkout@master
