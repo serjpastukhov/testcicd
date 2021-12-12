@@ -5,28 +5,16 @@ on: [push]
   #   branches:
   #     - 'master'
 jobs:
-  # docker:
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     LOGIN: ${{ secrets.DOCKER_LOGIN }}
-  #     NAME: ${{ secrets.DOCKER_NAME }}
-  #   steps:
-  #     - name: Login to https://hub.docker.com/
-  #       run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
-  #     - uses: actions/checkout@master
-  #     - name: Build image
-  #       run: docker build -t $LOGIN/$NAME:${GITHUB_REF:11} -f Dockerfile .
-  #     - name: Push image to docker.io
-  #       run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
-  hello_world_job:
+  docker:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    env:
+      LOGIN: ${{ secrets.DOCKER_LOGIN }}
+      NAME: ${{ secrets.DOCKER_NAME }}
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: actions/hello-world-docker-action@v1
-        with:
-          who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+      - name: Login to https://hub.docker.com/
+        run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
+      - uses: actions/checkout@master
+      - name: Build image
+        run: docker build -t $LOGIN/$NAME:${GITHUB_REF:11} -f Dockerfile .
+      - name: Push image to docker.io
+        run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
