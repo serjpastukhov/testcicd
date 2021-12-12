@@ -25,7 +25,7 @@ class FlaskAppTests(unittest.TestCase):
                           content_type='application/json',
                           data=json.dumps({'name': 'Den', 'age': 100}))
         self.assertEqual(r.json, {'status': 'OK'})
-        self.assertEqual(r.status_code, 200)
+        self.assertEqual(r.status_code, 201)
 
         r = self.app.post('/api',
                           content_type='application/json',
