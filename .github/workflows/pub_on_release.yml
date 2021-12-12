@@ -1,9 +1,9 @@
 name: Publish on Docker Hub and Deploy
 
-on:
-  push:
-    branches:
-      - 'master'
+on: [push]
+  # push:
+  #   branches:
+  #     - 'master'
 jobs:
   # docker:
   #   runs-on: ubuntu-latest
