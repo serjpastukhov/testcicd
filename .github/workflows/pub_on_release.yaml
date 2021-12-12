@@ -7,9 +7,9 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-    # env:
-    #   LOGIN: ${{ secrets.DOCKER_LOGIN }}
-    #   NAME: ${{ secrets.DOCKER_NAME }}
+    env:
+      LOGIN: ${{ secrets.DOCKER_LOGIN }}
+      NAME: ${{ secrets.DOCKER_NAME }}
     steps:
       -
         name: Login to docker.io
